@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gubbala's Store</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #cc3366, #ff6699);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            animation: fadeInDown 1s ease;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeIn 1.5s ease;
+        }
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #cc3366;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #cc3366;
+            color: white;
+            transform: translateY(-2px);
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #cc3366;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #cc3366;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        ul li::before {
+            content: '✓';
+            color: #cc3366;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .product-info h3 {
+            margin: 0 0 10px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .view-btn {
+            display: inline-block;
+            background: #cc3366;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .view-btn:hover {
+            background: #ff6699;
+            transform: translateY(-2px);
+        }
+        footer {
+            background: linear-gradient(135deg, #cc3366, #ff6699);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .contact-item a:hover {
+            color: #ffccdd;
+            transform: translateY(-2px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            nav a {
+                margin: 0 8px;
+                font-size: 0.9rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Gubbala's Store</h1>
+    <p>Low Price Available Clothes Here</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#offer">What We Offer</a>
+    <a href="#why">Why Choose Us</a>
+    <a href="#visit">Visit Us</a>
+</nav>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>Located on the main road of Tallarevu, Andhra Pradesh, Gubbala's Store is your go-to destination for stylish, affordable clothing. With a growing customer base of 1000+, we pride ourselves on delivering top-quality sarees and dresses at prices that fit every budget.</p>
+</section>
+
+<section id="offer">
+    <h2>What We Offer</h2>
+    <ul>
+        <li>Elegant Sarees – From traditional to modern styles</li>
+        <li>Trendy Dresses – Perfect for daily wear, functions, and special occasions</li>
+        <li>New Arrivals Weekly – Stay updated with the latest fashion trends</li>
+        <li>Affordable Pricing – Quality clothing without breaking the bank</li>
+    </ul>
+    
+    <h2>My Catalogs</h2>
+    <div class="gallery">
+        <div class="product-card">
+            <a href="https://meesho.com/cotton-lilan-digital-print-saree/p/8yxt9i?_ms=1.2" target="_blank">
+                <img src="45.jpeg" alt="Cotton Lilan Digital Print Saree">
+            </a>
+            <div class="product-info">
+                <h3>Cotton Lilan Digital Print Saree</h3>
+                <a href="https://meesho.com/cotton-lilan-digital-print-saree/p/8yxt9i?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/traditional-saree/p/8yxocy?_ms=1.2" target="_blank">
+                <img src="47.jpeg" alt="Traditional Saree">
+            </a>
+            <div class="product-info">
+                <h3>Traditional Saree</h3>
+                <a href="https://meesho.com/traditional-saree/p/8yxocy?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/striped-banarasi-cotton-blend-saree--light-blue/p/8z2v4g?_ms=1.2" target="_blank">
+                <img src="52.jpg" alt="Striped Banarasi Cotton Blend Saree">
+            </a>
+            <div class="product-info">
+                <h3>Striped Banarasi Cotton Blend Saree</h3>
+                <a href="https://meesho.com/striped-banarasi-cotton-blend-saree--light-blue/p/8z2v4g?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/woven-banarasi-silk-blend-saree--dark-green/p/8yt4c9?_ms=1.2" target="_blank">
+                <img src="34.jpg" alt="Woven Banarasi Silk Blend Saree">
+            </a>
+            <div class="product-info">
+                <h3>Woven Banarasi Silk Blend Saree</h3>
+                <a href="https://meesho.com/woven-banarasi-silk-blend-saree--dark-green/p/8yt4c9?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/floral-print-geometric-print-graphic-print-polka-print-daily-wear-georgette-saree--grey/p/8z30ft?_ms=1.2" target="_blank">
+                <img src="39.jpg" alt="Floral Print Georgette Saree">
+            </a>
+            <div class="product-info">
+                <h3>Floral Print Georgette Saree</h3>
+                <a href="https://meesho.com/floral-print-geometric-print-graphic-print-polka-print-daily-wear-georgette-saree--grey/p/8z30ft?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/anouk-ethnic-motifs-printed-halter-neck-a-line-dress/p/8xguhs?_ms=1.2" target="_blank">
+                <img src="22.png" alt="Anouk Ethnic Motifs Dress">
+            </a>
+            <div class="product-info">
+                <h3>Anouk Ethnic Motifs Dress</h3>
+                <a href="https://meesho.com/anouk-ethnic-motifs-printed-halter-neck-a-line-dress/p/8xguhs?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <a href="https://meesho.com/anouk-floral-print-sleeveless-round-neck-a-line-dress/p/8xgshu?_ms=1.2" target="_blank">
+                <img src="27.jpeg" alt="Anouk Floral Print Dress">
+            </a>
+            <div class="product-info">
+                <h3>Anouk Floral Print Dress</h3>
+                <a href="https://meesho.com/anouk-floral-print-sleeveless-round-neck-a-line-dress/p/8xgshu?_ms=1.2" target="_blank" class="view-btn">View Product</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="why">
+    <h2>Why Choose Us?</h2>
+    <ul>
+        <li>Trusted by 1000+ happy customers</li>
+        <li>Convenient location on Tallarevu main road</li>
+        <li>Excellent customer service and personalized shopping experience</li>
+        <li>Wide variety of styles for every age and occasion</li>
+    </ul>
+</section>
+
+<section id="visit">
+    <h2>Visit Us Today!</h2>
+    <p><strong>Address:</strong> Gubbala's Store, Tallarevu Main Road, Andhra Pradesh 533463</p>
+    <p><strong>Contact:</strong> <a href="tel:+919542183813">+91 9542183813</a></p>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <a href="tel:+919542183813">Call Us</a>
+        </div>
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <a href="mailto:contact@gubbalastore.com">Email Us</a>
+        </div>
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <a href="https://maps.google.com/?q=Gubbala's+Store,Tallarevu+Main+Road,Andhra+Pradesh+533463" target="_blank">Get Directions</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Gubbala's Store | All Rights Reserved</p>
+    <div class="contact-info">
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+            <a href="#" target="_blank">Facebook</a>
+        </div>
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+            <a href="#" target="_blank">Twitter</a>
+        </div>
+        <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <a href="#" target="_blank">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
